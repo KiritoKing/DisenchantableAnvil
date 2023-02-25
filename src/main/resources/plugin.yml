@@ -1,0 +1,18 @@
+name: disenchant-anvil # the plugins name as it should appear in the plugin list /pl
+version: "${project.version}" # the plugin's version
+author: KiritoKing
+main: io.KiritoKing.AnvilDisenchant
+api-version: 1.19 # the version of the API you want to use, required starting with 1.13
+
+commands:
+  reload:
+    description: Reload config of Anvil Disenchanter
+    usage: /<command>
+    aliases: [adreload]
+    permission: anvd.reload
+    permission-message: You don't have the permission to execute this command.
+
+permissions:
+  anvd.reload:
+    description: Permission of reload the plugin
+    default: op

@@ -1,0 +1,5 @@
+# 每次祛魔消耗多少级。0为不消耗
+exp-requirement: 1
+
+# 0代表单次祛魔一项，1代表单次祛魔所有
+disenchant-at-one-time: false
