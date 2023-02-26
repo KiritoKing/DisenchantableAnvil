@@ -73,7 +73,9 @@ public class DisenchantListener implements Listener {
     if (inv.getItem(0).getType() == Material.ENCHANTED_BOOK) return; // 当源物品是附魔书时不响应
     if (inv.getItem(2) == null) return; // 当没有出现结果时不响应
 
-    if (e.getSlot() == 2 && inv.getItem(2).getType() == Material.ENCHANTED_BOOK) {
+    if (e.getSlot() == 2
+        && inv.getItem(1).getType() == Material.BOOK
+        && inv.getItem(2).getType() == Material.ENCHANTED_BOOK) {
       Map<Enchantment, Integer> enchantments = inv.getItem(0).getEnchantments();
       int enchantNum = enchantments.size();
       int levels = AnvilDisenchant.Exp * (AnvilDisenchant.DisenchantAtOnce ? enchantNum : 1);

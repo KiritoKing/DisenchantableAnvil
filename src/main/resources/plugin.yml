@@ -1,4 +1,4 @@
-name: disenchant-anvil # the plugins name as it should appear in the plugin list /pl
+name: DisenchantableAnvil # the plugins name as it should appear in the plugin list /pl
 version: "${project.version}" # the plugin's version
 author: KiritoKing
 main: io.KiritoKing.AnvilDisenchant
