@@ -16,7 +16,19 @@ public class AnvilDisenchant extends JavaPlugin {
     public static boolean DisenchantAtOnce;
     public static boolean DestroyRaw;
 
-    public static void LoadConfig(AnvilDisenchant plugin) {
+    private void initConfig() {
+        // 创建默认配置文件
+        var config = getConfig();
+        config.addDefault("exp-requirement", 1);
+        config.addDefault("disenchant-at-one-time", false);
+        config.addDefault("debug", false);
+        config.addDefault("destroy-raw",false);
+        config.options().copyDefaults(true);
+        saveConfig();
+
+    }
+
+    public static void loadConfig(AnvilDisenchant plugin) {
         var config = plugin.getConfig();
         Debug = config.getBoolean("debug");
         DisenchantAtOnce = config.getBoolean("disenchant-at-one-time");
@@ -29,16 +41,8 @@ public class AnvilDisenchant extends JavaPlugin {
         Logger = getLogger();
         Instance = this;
 
-        // 创建默认配置文件
-        var config = getConfig();
-        config.addDefault("exp-requirement", 1);
-        config.addDefault("disenchant-at-one-time", false);
-        config.addDefault("debug", false);
-        config.addDefault("destroy-raw",false);
-        config.options().copyDefaults(true);
-        saveConfig();
-
-        LoadConfig(this);
+        initConfig();
+        loadConfig(this);
 
         getLogger().info("铁砧祛魔 v2.0 By:KiritoKing 加载完成");
 
@@ -52,8 +56,12 @@ public class AnvilDisenchant extends JavaPlugin {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (s.equalsIgnoreCase("adreload"))
         {
-            LoadConfig(this);
+            reloadConfig(); // 从文件重新加载
+            loadConfig(this);
             commandSender.sendMessage("已重载AnvilDisenchanter配置");
+            commandSender.sendMessage(String.format("每次祛魔消耗的登记=%d", Exp));
+            commandSender.sendMessage("是否一次性全部祛魔="+String.valueOf(DisenchantAtOnce));
+            commandSender.sendMessage("是否销毁原物品="+String.valueOf(DestroyRaw));
             return true;
         }
         return false;
