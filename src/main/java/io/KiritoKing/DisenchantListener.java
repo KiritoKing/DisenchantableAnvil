@@ -70,6 +70,7 @@ public class DisenchantListener implements Listener {
     Inventory inv = e.getClickedInventory();
     if (inv == null) return;
     if (inv.getType() != InventoryType.ANVIL) return;
+    if (inv.getItem(0) == null) return;
     if (inv.getItem(0).getType() == Material.ENCHANTED_BOOK) return; // 当源物品是附魔书时不响应
     if (inv.getItem(2) == null) return; // 当没有出现结果时不响应
 
